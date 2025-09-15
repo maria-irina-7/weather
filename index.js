@@ -5,25 +5,6 @@ let weather = {}
 
 let temp_grades = "celsius"
 
-document.addEventListener('DOMContentLoaded', () => {
-    // Search input
-    const searchInput = document.getElementById('search-box-input');
-    searchInput.addEventListener('keyup', (e) => showResults(e.target.value));
-    searchInput.addEventListener('keypress', (e) => {
-        if(e.key == "Enter") {
-            e.preventDefault();
-            document.getElementById("search-button").click();
-        }
-    });
-    
-    // Search button
-    const searchButton = document.getElementById('search-button');
-    searchButton.addEventListener('click', refresh);
-    
-    // Temperature grades button
-    const tempGradesButton = document.getElementById('temp-grades');
-    tempGradesButton.addEventListener('click', changeGrades);
-});
 
 window.showResults = showResults;
 window.refresh = refresh;
@@ -31,11 +12,6 @@ window.changeGrades = changeGrades;
 
 //--------------------------------------------------------------//
 
-function getCity() {
-    let cityName = document.getElementById("search-box-input").value;
-    console.log(cityName);
-    return cityName;
-}
 
 function getUrl(cityName) {
     let url = { ow: `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKeys.openWeather}`,
@@ -43,41 +19,6 @@ function getUrl(cityName) {
     return url;
 }
 
-function autocompleteMatch(input) {
-    if (input == '') {
-        document.getElementById("autocomplete-box").style.display = "none";
-      return [];  
-    } else document.getElementById("autocomplete-box").style.display = "block";
-
-    const geolocation = `http://api.weatherapi.com/v1/search.json?key=${apiKeys.weatherAPI}&q=${input}`;
-    fetch(geolocation).then(response => response.json()).then(response => fillCitiesAutocomplete(response, input));
-    console.log(search_cities);
-    return search_cities;
-}
-
-function fillCitiesAutocomplete(data, input) {
-    for(let i = 0; i < data.length; i++) {
-        search_cities.push(`${data[i].name}, ${data[i].region}, ${data[i].country}`);
-    }
-}
-
-function showResults(val) {
-    const res = document.getElementById("autocomplete-box");
-    res.innerHTML = '';
-    let list = '';
-    let terms = autocompleteMatch(val);
-
-    for (let i = 0; i < terms.length; i++) {
-      list += '<li>' + terms[i] + '</li>';
-    }
-    if(list) {
-        res.innerHTML = '<ul>' + list + '</ul>';    
-    } else {
-        res.style.display = "none";
-    }
-
-    search_cities = [];
-  }
 
 
 function updatePage(data) {
@@ -125,6 +66,56 @@ function changeGrades() {
         temp_grades = "celsius";
     }
 }
+
+
+/***
+ * AUTOCOMPLETE LOCATION
+ ***/
+
+let locations;
+
+async function getLocations(input) {
+    const url = `https://geocoding-api.open-meteo.com/v1/search?name=${input}&count=10&language=en&format=json`;
+    try {
+        const response = await fetch(url);
+        if(!response.ok) {
+            throw new Error(`Response status: ${response.status}`);
+        }
+        const result = await response.json();
+        locations = result.results;
+        console.log(locations);
+        autocompleteLocations(locations)
+    } catch (error) {
+        console.error(error.message);
+    }
+}
+
+function autocompleteLocations(locations) {
+    const res = document.getElementById("autocomplete-box");
+    res.innerHTML = '';
+    let list = '';
+    let terms = locations;
+
+    for (let i = 0; i < terms.length; i++) {
+      list += '<li>' + terms[i].name + '</li>';
+    }
+    if(list) {
+        res.innerHTML = '<ul>' + list + '</ul>';    
+    } else {
+        res.style.display = "none";
+    }
+}
+
+document.getElementById('location-input').addEventListener('input', (event) => {
+    if(event.target.value.length > 2) {
+        getLocations(event.target.value);
+    }
+})
+
+
+
+
+
 
 
 

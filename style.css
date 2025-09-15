@@ -51,7 +51,7 @@ input {
     display: block;
 }
 
-#search-box-input {
+#location-input {
     max-width: 600px;
     display: block;
     height: 50px;
@@ -65,12 +65,12 @@ input {
     margin-bottom: 2px;
 }
 
-#search-box-input:focus{
+#location-input:focus{
     outline: solid 4px rgba(0, 0, 0, 0.25);
     background-color: rgba(196, 196, 196, 0.3);;
 }
 
-#search-box-input::placeholder {
+#location-input::placeholder {
     opacity: 60%;
 }
 
