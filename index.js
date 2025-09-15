@@ -80,17 +80,6 @@ function showResults(val) {
   }
 
 
-function selecWeatherBoxGradient (weather, hour) {
-    console.log(weather.main);
-    if (weather.main == "Rain") {
-        document.getElementById("weather-box").style.background = "var(--rain-weather-gradient)";
-    }
-
-    if(weather.main == "Clouds" || weather.main == "Clear") {
-        document.getElementById("weather-box").style.background = "var(--day-weather-gradient)";
-    }
-}
-
 function updatePage(data) {
     weather = {
         condition: data[1].current.condition.text,
