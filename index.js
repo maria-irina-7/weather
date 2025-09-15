@@ -6,7 +6,6 @@ let weather = {}
 let temp_grades = "celsius"
 
 
-window.showResults = showResults;
 window.refresh = refresh;
 window.changeGrades = changeGrades;
 
