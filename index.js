@@ -72,6 +72,8 @@ function changeGrades() {
  ***/
 
 let locations;
+let autocompleteFocus = 0;
+let locationListLenght = 0;
 
 async function getLocations(input) {
     const url = `https://geocoding-api.open-meteo.com/v1/search?name=${input}&count=10&language=en&format=json`;
@@ -83,7 +85,7 @@ async function getLocations(input) {
         const result = await response.json();
         locations = result.results;
         console.log(locations);
-        autocompleteLocations(locations)
+        autocompleteLocations(locations);
     } catch (error) {
         console.error(error.message);
     }
@@ -94,23 +96,49 @@ function autocompleteLocations(locations) {
     res.innerHTML = '';
     let list = '';
     let terms = locations;
+    if(typeof terms.length === 'undefined') {
+        terms.length = 0;
+    }
 
-    for (let i = 0; i < terms.length; i++) {
-      list += '<li>' + terms[i].name + '</li>';
+    locationListLenght = terms.length;
+
+    for (let i = 0; i < locationListLenght; i++) {
+      list += `<li id="loc-${i}">` + terms[i].name + '</li>';
     }
     if(list) {
-        res.innerHTML = '<ul>' + list + '</ul>';    
+        res.innerHTML = '<ul id="locations-list">' + list + '</ul>';
+        console.log("lista: " + locationListLenght);
+        selectLocation(locationListLenght);
     } else {
         res.style.display = "none";
     }
+
+    autocompleteFocus = 0;
 }
 
 document.getElementById('location-input').addEventListener('input', (event) => {
-    if(event.target.value.length > 2) {
+    if(event.target.value.length) {
         getLocations(event.target.value);
+        
     }
 })
 
+document.getElementById('location-input').addEventListener('keydown', (event) => {
+    switch(event.key) {
+            case "ArrowUp" :
+                if(autocompleteFocus > 0) {
+                    autocompleteFocus = autocompleteFocus - 1;
+                }
+                console.log(autocompleteFocus);
+                break;
+            case "ArrowDown" :
+                if (autocompleteFocus < locationListLenght) {
+                    autocompleteFocus = autocompleteFocus + 1;
+                }
+                console.log(autocompleteFocus);      
+                break;
+        };
+    }) 
 
 
 
