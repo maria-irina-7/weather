@@ -1,3 +1,4 @@
+import { getWeather } from './weather.js';
 
 
 // window.refresh = refresh;
@@ -122,12 +123,6 @@ function changeFocusStyle() {
     }
 }
 
-// Get Input 
-document.getElementById('location-input').addEventListener('input', (event) => {
-    if(event.target.value.length) {
-        getLocations(event.target.value);
-    }
-})
 
 // Arrow Autocomplete Select
 document.getElementById('location-input').addEventListener('keydown', (event) => {
@@ -145,8 +140,10 @@ document.getElementById('location-input').addEventListener('keydown', (event) =>
 
         case "Enter" :
             event.preventDefault();
-            console.log(locations[autocompleteFocus]);
-            // getWearher(locations[autocompleteFocus]);
+            getWeather(locations[autocompleteFocus].latitude, locations[autocompleteFocus].longitude);
+            
+            document.getElementById('location-input').value = "";
+            getLocations("");
             break;
 
     };
@@ -154,6 +151,12 @@ document.getElementById('location-input').addEventListener('keydown', (event) =>
         changeFocusStyle();
     }
 }) 
+
+// Get Input 
+document.getElementById('location-input').addEventListener('input', (event) => {
+    getLocations(event.target.value);
+})
+
 
 
 
