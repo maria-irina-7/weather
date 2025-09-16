@@ -1,8 +1,3 @@
-import { apiKeys } from './env.js';
-
-let weather = {}
-
-let temp_grades = "celsius"
 
 
 // window.refresh = refresh;
