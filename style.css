@@ -107,6 +107,7 @@ input {
 
 #autocomplete-box ul li:hover {
     background: rgba(160, 160, 160, 0.267);
+    display: block;
 }
 
 #weather-box {
@@ -116,7 +117,6 @@ input {
     display: block;
     width: inherit;
     min-width: inherit;
-    display: none;
 }
 
 #weather-details-wrapper {
