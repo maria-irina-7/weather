@@ -102,6 +102,13 @@ function updateWeather() {
     console.log(weather.temperature2m);
     // document.getElementById("weather-box").style.display = "block";
     document.getElementById("temperature").innerHTML = `<b>${weather.temperature2m}</b>`;
+    // document.getElementById("icon").src = `assets/weathericons/${weather.icon}.svg`;
+    document.getElementById("location-text").innerHTML = `${location.name}, ${location.admin1}, ${location.country}`;
+    document.getElementById("condition-text").innerHTML = `${weather.weatherCode}`;
+    let dateTime = new Date();
+    document.getElementById("time-text").innerHTML = `${dateTime.getHours()}:${dateTime.getMinutes()} - 
+                                        ${dateTime.getDate()}.${dateTime.getMonth() + 1}.${dateTime.getFullYear()}`;
+    document.getElementById("weather-box").style.display = "block";
 }
 
 // Get input and autocomplete
