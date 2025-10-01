@@ -4,7 +4,7 @@ import { getWeather } from './weather.js';
  * AUTOCOMPLETE LOCATION
  ***/
 
-let locations;
+let locations = "";
 let autocompleteFocus = 0;
 let locationListLenght = 0;
 let isList = false;
@@ -18,8 +18,7 @@ async function getLocations(input) {
         }
         const result = await response.json();
         locations = result.results;
-        console.log(locations);
-        autocompleteLocations(locations);
+        return locations;
     } catch (error) {
         console.error(error.message);
     }
@@ -91,10 +90,11 @@ document.getElementById('location-input').addEventListener('keydown', (event) =>
     }
 }) 
 
-// Get Input 
+// Get input and autocomplete
 document.getElementById('location-input').addEventListener('input', (event) => {
-    getLocations(event.target.value);
+    getLocations(event.target.value).then(value => {locations = value; autocompleteLocations(locations); console.log(locations)});
 })
+
 
 
 
