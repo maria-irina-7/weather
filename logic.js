@@ -1,5 +1,5 @@
 import { getWeather, Weather } from './weather.js';
-import { Location } from './location.js';
+import { location } from './location.js';
 
 /***
  * AUTOCOMPLETE LOCATION
@@ -10,7 +10,6 @@ let autocompleteFocus = 0;
 let locationListLenght = 0;
 let isList = false;
 
-export let location;
 
 async function getLocations(input) {
     const url = `https://geocoding-api.open-meteo.com/v1/search?name=${input}&count=10&language=en&format=json`;
@@ -82,7 +81,7 @@ document.getElementById('location-input').addEventListener('keydown', (event) =>
             event.preventDefault();
 
             
-            location = new Location(locations[autocompleteFocus]);
+            location.setLocation(locations[autocompleteFocus]);
 
             getWeather(location.latitude, location.longitude);
             document.getElementById('location-input').value = location.name;

@@ -7,7 +7,8 @@ export class Location {
     // longitude
     // name
     // timezone
-    constructor(json) {
+
+    setLocation(json) {
         this.admin1 = json.admin1;
         this.admin2 = json.admin2;
         this.country = json.country;
@@ -18,3 +19,5 @@ export class Location {
         this.timezone = json.timezone;
     }
 } 
+
+export let location = new Location();

@@ -3,8 +3,8 @@ import { Location } from "./location.js";
 export class Weather {
     // location
 
-    setLocation(json) {
-        this.location = new Location(json)
+    setLocation(location) {
+        this.location = location;
     }
 
     async getWeather() {
