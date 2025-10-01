@@ -89,7 +89,6 @@ document.getElementById('location-input').addEventListener('keydown', (event) =>
                 updateWeather();
             })
 
-            getLocations("");
             break;
 
     };
@@ -99,6 +98,7 @@ document.getElementById('location-input').addEventListener('keydown', (event) =>
 })
 
 function updateWeather() {
+    document.getElementById("autocomplete-box").style.display = "none";
     console.log(weather.temperature2m);
     // document.getElementById("weather-box").style.display = "block";
     document.getElementById("temperature").innerHTML = `<b>${weather.temperature2m}</b>`;
