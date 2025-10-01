@@ -1,4 +1,5 @@
 import { getWeather } from './weather.js';
+import { Location } from './location.js';
 
 /***
  * AUTOCOMPLETE LOCATION
@@ -8,6 +9,8 @@ let locations = "";
 let autocompleteFocus = 0;
 let locationListLenght = 0;
 let isList = false;
+
+export let location;
 
 async function getLocations(input) {
     const url = `https://geocoding-api.open-meteo.com/v1/search?name=${input}&count=10&language=en&format=json`;
@@ -36,7 +39,7 @@ function autocompleteLocations(locations) {
     locationListLenght = terms.length;
 
     for (let i = 0; i < locationListLenght; i++) {
-      list += `<li id="loc-${i}">` + terms[i].name + '</li>';
+      list += `<li id="loc-${i}">` + terms[i].name + `, `+ terms[i].admin1 + '</li>';
     }
     if(list) {
         res.style.display = "block";
@@ -61,7 +64,6 @@ function changeFocusStyle() {
     }
 }
 
-
 // Arrow Autocomplete Select
 document.getElementById('location-input').addEventListener('keydown', (event) => {
     switch(event.key) {
@@ -78,9 +80,11 @@ document.getElementById('location-input').addEventListener('keydown', (event) =>
 
         case "Enter" :
             event.preventDefault();
-            getWeather(locations[autocompleteFocus].latitude, locations[autocompleteFocus].longitude);
-            console.log(locations[autocompleteFocus]);
-            document.getElementById('location-input').value = locations[autocompleteFocus].name;
+
+            location = new Location(locations[autocompleteFocus]);
+
+            getWeather(location.latitude, location.longitude);
+            document.getElementById('location-input').value = location.name;
             getLocations("");
             break;
 
