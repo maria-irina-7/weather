@@ -1,3 +1,36 @@
+import { Location } from "./location.js";
+
+export class Weather {
+    // location
+
+    setLocation(json) {
+        this.location = new Location(json)
+    }
+
+    async getWeather() {
+        console.log(this.location.latitude);
+        console.log(this.location.longitude);
+
+        const url = `https://api.open-meteo.com/v1/forecast?latitude=${this.location.latitude}&longitude=${this.location.longitude}&timezone=auto&current=temperature_2m,weather_code`;
+        try {
+            const response = await fetch(url);
+            if(!response.ok) {
+                throw new Error(`Response status: ${response.status}`);
+            }
+            const result = await response.json();
+            this.temperature2m = json.current.temperature_2m;
+            this.weatherCode = json.cureent.weather_code;
+            // weather = result;
+            // console.log(weather);
+            // updateWeather();
+
+            // return result;
+        } catch (error) {
+            console.error(error.message);
+        }
+    }
+}
+
 let weather;
 
 export async function getWeather(latitude, longitude) {
@@ -14,6 +47,8 @@ export async function getWeather(latitude, longitude) {
         weather = result;
         console.log(weather);
         updateWeather();
+
+        return result;
     } catch (error) {
         console.error(error.message);
     }
