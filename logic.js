@@ -1,4 +1,4 @@
-import { getWeather } from './weather.js';
+import { getWeather, Weather } from './weather.js';
 import { Location } from './location.js';
 
 /***
@@ -81,6 +81,7 @@ document.getElementById('location-input').addEventListener('keydown', (event) =>
         case "Enter" :
             event.preventDefault();
 
+            
             location = new Location(locations[autocompleteFocus]);
 
             getWeather(location.latitude, location.longitude);
