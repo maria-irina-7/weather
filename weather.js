@@ -18,10 +18,11 @@ export class Weather {
                 throw new Error(`Response status: ${response.status}`);
             }
             const result = await response.json();
-            this.temperature2m = json.current.temperature_2m;
-            this.weatherCode = json.cureent.weather_code;
+            this.temperature2m = result.current.temperature_2m;
+            this.weatherCode = result.current.weather_code;
             // weather = result;
             // console.log(weather);
+            console.log(this);
             // updateWeather();
 
             // return result;
@@ -31,38 +32,7 @@ export class Weather {
     }
 }
 
-let weather;
-
-export async function getWeather(latitude, longitude) {
-    console.log(latitude);
-    console.log(longitude);
-
-    const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&timezone=auto&current=temperature_2m,weather_code`;
-    try {
-        const response = await fetch(url);
-        if(!response.ok) {
-            throw new Error(`Response status: ${response.status}`);
-        }
-        const result = await response.json();
-        weather = result;
-        console.log(weather);
-        updateWeather();
-
-        return result;
-    } catch (error) {
-        console.error(error.message);
-    }
-
-    
-}
-
-// document.getElementById("temperature").innerHTML = "test";
-
-function updateWeather() {
-    console.log(weather.current.temperature_2m);
-    // document.getElementById("weather-box").style.display = "block";
-    document.getElementById("temperature").innerHTML = `<b>${weather.current.temperature_2m}</b>`;
-}
+export let weather = new Weather();
 
     // document.getElementById("icon").src = `assets/weathericons/${weather.icon}.svg`;
     // document.getElementById("location-text").innerHTML = `${location.city}, ${location.region}, ${location.country}`;

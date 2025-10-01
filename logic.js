@@ -1,4 +1,4 @@
-import { getWeather, Weather } from './weather.js';
+import { weather } from './weather.js';
 import { location } from './location.js';
 
 /***
@@ -78,13 +78,17 @@ document.getElementById('location-input').addEventListener('keydown', (event) =>
             break;
 
         case "Enter" :
-            event.preventDefault();
-
-            
+            event.preventDefault();            
             location.setLocation(locations[autocompleteFocus]);
 
-            getWeather(location.latitude, location.longitude);
+            // getWeather(location.latitude, location.longitude);
             document.getElementById('location-input').value = location.name;
+
+            weather.setLocation(location);
+            weather.getWeather().then(() => {
+                updateWeather();
+            })
+
             getLocations("");
             break;
 
@@ -92,7 +96,13 @@ document.getElementById('location-input').addEventListener('keydown', (event) =>
     if(isList) {
         changeFocusStyle();
     }
-}) 
+})
+
+function updateWeather() {
+    console.log(weather.temperature2m);
+    // document.getElementById("weather-box").style.display = "block";
+    document.getElementById("temperature").innerHTML = `<b>${weather.temperature2m}</b>`;
+}
 
 // Get input and autocomplete
 document.getElementById('location-input').addEventListener('input', (event) => {
