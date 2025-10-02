@@ -1,5 +1,6 @@
 import { weather } from './weather.js';
 import { location } from './location.js';
+import { convertWeatherCode } from './utils.js';
 
 /***
  * AUTOCOMPLETE LOCATION
@@ -102,7 +103,7 @@ function updateWeather() {
     console.log(weather.temperature2m);
     // document.getElementById("weather-box").style.display = "block";
     document.getElementById("temperature").innerHTML = `<b>${weather.temperature2m}</b>`;
-    document.getElementById("condition-text").innerHTML = `${weather.weatherCode}`;
+    document.getElementById("condition-text").innerHTML = `${convertWeatherCode(weather.weatherCode)}`;
     // document.getElementById("icon").src = `assets/weathericons/${weather.icon}.svg`;
     document.getElementById("location-text").innerHTML = `${location.name}, ${location.admin1}, ${location.country}`;
     let dateTime = new Date();
