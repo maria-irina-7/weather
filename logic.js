@@ -104,11 +104,11 @@ function updateWeather() {
     // document.getElementById("weather-box").style.display = "block";
     document.getElementById("temperature").innerHTML = `<b>${weather.temperature2m}</b>`;
     document.getElementById("condition-text").innerHTML = `${convertWeatherCode(weather.weatherCode)}`;
-    // document.getElementById("icon").src = `assets/weathericons/${weather.icon}.svg`;
-    document.getElementById("location-text").innerHTML = `${location.name}, ${location.admin1}, ${location.country}`;
-    let dateTime = new Date();
-    document.getElementById("time-text").innerHTML = `${dateTime.getHours()}:${dateTime.getMinutes()} - 
-                                        ${dateTime.getDate()}.${dateTime.getMonth() + 1}.${dateTime.getFullYear()}`;
+    document.getElementById("icon").src = `assets/weathericons/classic/${weather.weatherCode}d.svg`;
+    document.getElementById("location-text").innerHTML = `${weather.location.name}, ${weather.location.admin1}, ${weather.location.country}`;
+
+    let dateTime = new Date(weather.time).toLocaleDateString(undefined, { hour: '2-digit', minute: '2-digit', year: 'numeric', month: 'long', day: '2-digit', hour12: false });
+    document.getElementById("time-text").innerHTML = dateTime;
     document.getElementById("weather-box").style.display = "block";
 }
 
