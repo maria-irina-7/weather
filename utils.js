@@ -33,3 +33,11 @@ const wmoInterpretation = {
 export function convertWeatherCode(code) {
     return wmoInterpretation[code] || "Unknown weather code";
 }
+
+export function celciusTofahrenheit(celsius) {
+    return (celsius * 9/5) + 32;
+}
+
+export function fahrenheitToCelcius(fahrenheit) {
+    return (fahrenheit - 32) * 5/9;
+}
