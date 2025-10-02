@@ -47,15 +47,6 @@ export let weather = new Weather();
 // window.refresh = refresh;
 // window.changeGrades = changeGrades;
 
-//--------------------------------------------------------------//
-
-
-// function getUrl(cityName) {
-//     let url = { ow: `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKeys.openWeather}`,
-//                 wapi: `http://api.weatherapi.com/v1/current.json?key=${apiKeys.weatherAPI}&q=${cityName}&aqi=no` };
-//     return url;
-// }
-
 
 
 // function updatePage(data) {
@@ -81,16 +72,6 @@ export let weather = new Weather();
 
 
 
-// function refresh() {
-//     let cityName = getCity();
-//     let url = getUrl(cityName);
-//     console.log(url);
-    
-//     Promise.all([
-//         fetch(url.ow).then(response => response.json()),
-//         fetch(url.wapi).then(response => response.json())
-//       ]).then(response => updatePage(response))
-// }
 
 // function changeGrades() {
 //     if(temp_grades === "celsius") {
