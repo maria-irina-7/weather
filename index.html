@@ -46,3 +46,51 @@
 	
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://openweathermap.org/img/wn/02d@2x.png">
+    <link rel="stylesheet" href="style.css">
+    <title>Weather</title>
+
+</head>
+<body>
+    <div class="flex">
+		<form> 
+			<input type="text" class="" id="location-input" 
+				placeholder="Search for a location..." autocomplete="off" value="" 
+				size="100"> 
+			<button type="button" id="search-button"></button>
+		</form>
+		<div class="" id="main-container">
+    		<div id="weather-box">
+				<div id="weather-details-wrapper">
+        			<table id="weather">
+        	    		<td id="temperature"></td>
+						<td> <button id="temp-grades">°C</button></td>
+        	    		<td> <img src="" id="icon"></td>
+        			</table>
+					<span class="weather-text" id="condition-text"> </span>
+					
+				</div>
+				<div id="location">
+					<img src="assets/pin.png" id="location-pin-img"> 
+					<span id="location-text"></span>
+					<div id="time-text"></div>
+				</div>
+			</div>
+			<div class="" id="autocomplete-box"></div>
+		</div>
+		
+		
+    </div>
+	
+	<script type="module" src="./env.js"></script>
+	<script type="module" src="./weather.js"></script>
+    <script type="module" src="./logic.js"></script>
+	
+</body>
+</html>

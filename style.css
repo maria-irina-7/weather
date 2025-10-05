@@ -157,7 +157,7 @@ input {
 }
 
 #autocomplete-box ul li:hover {
-    background: rgba(160, 160, 160, 0.4);
+    background: rgba(160, 160, 160, 0.5);
     display: block;
 }
 

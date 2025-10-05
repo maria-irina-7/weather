@@ -34,6 +34,68 @@ export function convertWeatherCode(code) {
     return wmoInterpretation[code] || "Unknown weather code";
 }
 
+export function getWeatherIcon(code, isDay) {
+    let dayNight = isDay ? "d" : "n";
+    return `assets/weathericons/classic/${code}${dayNight}.svg`;
+}
+
+export function getWeatherCollection(code, is_day) {
+    if(code === 0) {
+        if(is_day) {
+            return "fLPc32CLztA"; // clear - day
+        } else {
+            return "dUFnK7L8cZs"; // clear - night
+        }
+    } else if(code === 1) {
+        if(is_day) {
+            return "cyeza2Za6u4"; // mainly clear - day
+        } else {
+            return "lB4dk-xLPS0"; // mainly clear - night
+        }
+    } else if(code === 2) {
+        if(is_day) {
+            return "cFeCqtB_7wg"; // partly cloudy - day
+        } else {
+            return "VT8miH-h2ds"; // partly cloudy - night
+        }
+    } else if(code === 3) {
+        if(is_day) {
+            return "wPpVau6yRVE"; // overcast - day
+        } else {
+            return "wYzVHRM_OrQ"; // overcast - night
+        }
+    } else if(code >= 45 && code <= 48) {
+        return "wPpVau6yRVE"; // fog, depositing rime fog
+    } else if(code >= 51 && code <= 57) {
+        return "wPpVau6yRVE"; // drizzle
+    } else if(code >= 61 && code <= 67) {
+        if(is_day) {
+            return "upZ-o2r0QSI"; // rain - day
+        } else {
+            return "tEhQ990GvPg"; // rain - night
+        }
+    } else if(code >= 71 && code <= 77) {
+        if(is_day) {
+            return "-ciINgSqagk"; // snow falls - day
+        } else {
+            return "4nh5Q8fA9rs"; // snow falls - night
+        }
+    } else if(code >= 80 && code <= 86) { // rain showers, snow showers
+        if(is_day) {
+            return "upZ-o2r0QSI"; // rain - day
+        } else {
+            return "tEhQ990GvPg"; // rain - night
+        } 
+    } else if(code >= 95 && code <= 99) {  // thunderstorm
+        if(is_day) {
+            return "upZ-o2r0QSI"; // rain - day
+        } else {
+            return "tEhQ990GvPg"; // rain - night
+        }
+    } else {
+        return "fLPc32CLztA"; // default to clear
+    }
+}
 export function celciusTofahrenheit(celsius) {
     return (celsius * 9/5) + 32;
 }
