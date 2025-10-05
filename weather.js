@@ -39,45 +39,6 @@ export class Weather {
 
 export let weather = new Weather();
 
-    // document.getElementById("icon").src = `assets/weathericons/${weather.icon}.svg`;
-    // document.getElementById("location-text").innerHTML = `${location.city}, ${location.region}, ${location.country}`;
-    // document.getElementById("condition-text").innerHTML = `${weather.condition}`;
-    // document.getElementById("time-text").innerHTML = `${dateTime.getHours()}:${dateTime.getMinutes()} - 
-    //                                     ${dateTime.getDate()}.${dateTime.getMonth() + 1}.${dateTime.getFullYear()}`;
-    // document.getElementById("search-box-input").value = "";
-    // document.getElementById("weather-box").style.display = "block"; 
-
-    // document.getElementById("autocomplete-box").style.display = "none";
-
-// window.refresh = refresh;
-// window.changeGrades = changeGrades;
-
-
-
-// function updatePage(data) {
-//     weather = {
-//         condition: data[1].current.condition.text,
-//         temperature: { temp_c: data[1].current.temp_c, temp_f: data[1].current.temp_f},
-//         icon: data[0].weather[0].icon
-//     };
-//     let location = {city: data[1].location.name, region:data[1].location.region, country: data[1].location.country};
-//     let dateTime = new Date(data[1].location.localtime_epoch * 1000);
-
-//     document.getElementById("temperature").innerHTML = `<b>${weather.temperature.temp_c}</b>`;
-//     document.getElementById("icon").src = `assets/weathericons/${weather.icon}.svg`;
-//     document.getElementById("location-text").innerHTML = `${location.city}, ${location.region}, ${location.country}`;
-//     document.getElementById("condition-text").innerHTML = `${weather.condition}`;
-//     document.getElementById("time-text").innerHTML = `${dateTime.getHours()}:${dateTime.getMinutes()} - 
-//                                         ${dateTime.getDate()}.${dateTime.getMonth() + 1}.${dateTime.getFullYear()}`;
-//     document.getElementById("search-box-input").value = "";
-//     document.getElementById("weather-box").style.display = "block"; 
-
-//     document.getElementById("autocomplete-box").style.display = "none";
-// }
-
-
-
-
 // function changeGrades() {
 //     if(temp_grades === "celsius") {
 //         document.getElementById("temperature").innerHTML = `<b>${weather.temperature.temp_f}</b>`;
