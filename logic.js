@@ -13,7 +13,7 @@ let locationListLenght = 0;
 let isList = false;
 
 async function getRandomImage(collectionId) {
-    const url = `https://api.unsplash.com/collections/${collectionId}/photos?client_id=${apiKeys.unsplashAccess}`;
+    const url = `https://api.unsplash.com/photos/random?collections=${collectionId}&client_id=${apiKeys.unsplashAccess}`
     try {
         const response = await fetch(url);
         if(!response.ok) {
@@ -21,8 +21,7 @@ async function getRandomImage(collectionId) {
 
         }
         const result = await response.json();
-        const randomIndex = Math.floor(Math.random() * result.length);
-        const imageUrl = result[randomIndex].urls.full;
+        const imageUrl = result.urls.full;
         document.body.style.backgroundImage = `url(${imageUrl})`;
     } catch (error) {
         console.error(error.message);
