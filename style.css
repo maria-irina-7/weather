@@ -6,9 +6,11 @@ html {
 body {
     font-family: system-ui;
     background-image: url(https://images.unsplash.com/photo-1680324418862-2770e90e1d56);
-    background-position: center;
+    background-position: top;
     background-repeat: no-repeat;
     background-size: cover;
+    width: 100vw;
+    height: 100vh;
 }
 
 :root {
