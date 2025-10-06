@@ -137,7 +137,23 @@ document.getElementById('location-input').addEventListener('input', (event) => {
         locations = value; 
         autocompleteLocations(locations); 
     });
-})
+});
+
+let tempGrades = "celsius";
+
+function changeGrades(temperature) {
+    if(tempGrades === "celsius") {
+        document.getElementById("temperature").innerHTML = `<b>${celciusTofahrenheit(temperature)}</b>`;
+        document.getElementById("temp-grades").innerHTML = "°F";
+        tempGrades = "fanrenhein"
+    } else {
+        document.getElementById("temperature").innerHTML = `<b>${temperature}</b>`;
+        document.getElementById("temp-grades").innerHTML = "°C";
+        tempGrades = "celsius";
+    }
+}
+
+document.getElementById("temp-grades").addEventListener('onclick', changeGrades(weather.temperature2m));
 
 
 

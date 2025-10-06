@@ -25,12 +25,8 @@ export class Weather {
             this.is_day = result.current.is_day;
             this.cloud_cover = result.current.cloud_cover;
 
-            // weather = result;
-            // console.log(weather);
             console.log(this);
-            // updateWeather();
 
-            // return result;
         } catch (error) {
             console.error(error.message);
         }
@@ -38,15 +34,3 @@ export class Weather {
 }
 
 export let weather = new Weather();
-
-// function changeGrades() {
-//     if(temp_grades === "celsius") {
-//         document.getElementById("temperature").innerHTML = `<b>${weather.temperature.temp_f}</b>`;
-//         document.getElementById("temp-grades").innerHTML = "°F";
-//         temp_grades = "fanrenhein"
-//     } else {
-//         document.getElementById("temperature").innerHTML = `<b>${weather.temperature.temp_c}</b>`;
-//         document.getElementById("temp-grades").innerHTML = "°C";
-//         temp_grades = "celsius";
-//     }
-// }

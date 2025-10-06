@@ -1,12 +1,4 @@
 export class Location {
-    // admin1
-    // admin2
-    // country
-    // countryCode
-    // latitude
-    // longitude
-    // name
-    // timezone
 
     setLocation(json) {
         this.admin1 = json.admin1;
