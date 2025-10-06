@@ -1,6 +1,6 @@
 import { weather } from './weather.js';
 import { location } from './location.js';
-import { convertWeatherCode, getWeatherCollection, getWeatherIcon } from './utils.js';
+import { convertWeatherCode, getWeatherCollection, getWeatherIcon, celciusTofahrenheit} from './utils.js';
 import { apiKeys } from './env.js';
 
 /***
@@ -139,6 +139,7 @@ document.getElementById('location-input').addEventListener('input', (event) => {
     });
 });
 
+// Change temperature grades
 let tempGrades = "celsius";
 
 function changeGrades(temperature) {
@@ -153,16 +154,4 @@ function changeGrades(temperature) {
     }
 }
 
-document.getElementById("temp-grades").addEventListener('onclick', changeGrades(weather.temperature2m));
-
-
-
-
-
-
-
-
-
-
-
-
+document.getElementById("temp-grades").addEventListener('click', () => changeGrades(weather.temperature2m));
